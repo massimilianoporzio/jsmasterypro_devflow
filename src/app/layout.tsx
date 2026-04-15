@@ -7,7 +7,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/ui/navigation/navbar";
+import Navbar from "@/components/navigation/navbar";
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
