@@ -6,6 +6,9 @@ import { ReactNode } from "react";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
+import { cn } from "@/lib/utils";
+import Navbar from "@/components/ui/navigation/navbar";
+
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
   variable: "--font-inter",
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
       <head>
         <link
           rel="stylesheet"
@@ -40,6 +43,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 
       <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>
