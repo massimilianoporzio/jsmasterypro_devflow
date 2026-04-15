@@ -7,7 +7,6 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/navigation/navbar";
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
@@ -43,7 +42,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 
       <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Navbar />
           {children}
         </ThemeProvider>
       </body>

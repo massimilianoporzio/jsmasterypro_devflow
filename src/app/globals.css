@@ -112,6 +112,14 @@
   @apply bg-light-800 dark:bg-dark-200;
 }
 
+@utility rounded-2 {
+  border-radius: 8px !important;
+}
+
+@utility rounded-1.5 {
+  border-radius: 6px !important;
+}
+
 @utility background-dark400_light900 {
   @apply dark:bg-dark-400! bg-light-900!;
 }
