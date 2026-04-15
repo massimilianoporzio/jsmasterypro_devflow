@@ -2,7 +2,4 @@
  *   Copyright (c) 2026 Massimiliano Porzio
  *   All rights reserved.
  */
-const SignUp = () => {
-  return <div>SignUp</div>;
-};
-export default SignUp;
+export { auth as proxy } from "@/auth";

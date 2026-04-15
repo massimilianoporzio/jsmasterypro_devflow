@@ -1,3 +1,7 @@
+/*
+ *   Copyright (c) 2026 Massimiliano Porzio
+ *   All rights reserved.
+ */
 import SocialAuthForm from "@/components/forms/SocialAuthForm";
 import Image from "next/image";
 import React from "react";

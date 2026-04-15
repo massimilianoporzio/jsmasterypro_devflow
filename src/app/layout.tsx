@@ -1,3 +1,8 @@
+/*
+ *   Copyright (c) 2026 Massimiliano Porzio
+ *   All rights reserved.
+ */
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
@@ -7,6 +12,10 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
+
+import { Toaster } from "@/components/Toaster";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
@@ -30,6 +39,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
       <head>
@@ -39,12 +49,14 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
       </head>
-
-      <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
+      <SessionProvider session={session}>
+        <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </SessionProvider>
     </html>
   );
 };
