@@ -3,6 +3,7 @@
   "semi": true,
   "tabWidth": 2,
   "printWidth": 120,
+  "singleAttributePerLine": true,
   "endOfLine": "auto",
   "arrowParens": "always",
   "plugins": ["prettier-plugin-tailwindcss"]
