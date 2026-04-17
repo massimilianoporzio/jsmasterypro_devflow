@@ -2,7 +2,7 @@
  *   Copyright (c) 2026 Massimiliano Porzio
  *   All rights reserved.
  */
-
+"use client";
 import AuthForm from "@/components/forms/AuthForm";
 import { SignUpSchema } from "@/lib/validation";
 
