@@ -9,6 +9,8 @@ import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import ROUTES from "@/constants/routes";
 
 interface AuthFormProps<T extends FieldValues> {
   schema: z.ZodType<T>;
@@ -16,13 +18,6 @@ interface AuthFormProps<T extends FieldValues> {
   onSubmit: (data: T) => Promise<{ success: boolean }>;
   formType: "SIGN_IN" | "SIGN_UP";
 }
-
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(2, "Username must be at least 2 characters long")
-    .max(50, "Username must be at most 50 characters long"),
-});
 
 const AuthForm = <T extends FieldValues>({ schema, defaultValues, onSubmit, formType }: AuthFormProps<T>) => {
   const form = useForm<T>({
@@ -56,8 +51,7 @@ const AuthForm = <T extends FieldValues>({ schema, defaultValues, onSubmit, form
                   placeholder={fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
                   autoComplete={fieldName}
                   type={fieldName === "password" ? "password" : "text"}
-                  className="rounded-2"
-                  required
+                  className="paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 no-focus rounded-1.5 min-h-12 border"
                 />
                 <FieldDescription />
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
@@ -74,6 +68,21 @@ const AuthForm = <T extends FieldValues>({ schema, defaultValues, onSubmit, form
           {form.formState.isSubmitting ? (buttonText === "Sign In" ? "Signing In..." : "Signing Up...") : buttonText}
         </Button>
       </FieldGroup>
+      {formType === "SIGN_IN" ? (
+        <p>
+          Don't have an account?{" "}
+          <Link href={ROUTES.SIGN_UP} className="paragraph-semibold primary-text-gradient">
+            Sign Up
+          </Link>
+        </p>
+      ) : (
+        <p>
+          Already have an account?{" "}
+          <Link href={ROUTES.SIGN_IN} className="paragraph-semibold primary-text-gradient">
+            Sign In
+          </Link>
+        </p>
+      )}
     </form>
   );
 };
